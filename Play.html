@@ -494,21 +494,32 @@
 		//점수
 		
 		function addScore(){
-			var score = 11;
-			for (var m = 0; m < 120; m++) {
-				var row = [m, m+1, m+2, m+3, m+4, m+5, m+6, m+7, m+8, m+9];
-
+			var l = (squares.length / width) - 1;
+			for (var i = 0; i < l; i++) {
+				var row = [];
+				for(var j=0; j < width; j++) {
+					row.push(i*width + j);
+				}
+				console.log(row);
+				var score = 11;
+				var scored = true;
 				if (row.every(index => squares[index].classList.contains('taken'))) {
-					document.getElementById('score').innerHTML = score;
-					
-					score = score - 1;
-				document.getElementById('announceScore').innerHTML = "Your score is " + score + ".";
-				};
-			
+						 for(var k=0; k<width; k++){
+						 	squares[row[k]].style.backgroundColor = "black";
+						 }
+						scored = false;
+				}
+				if(!scored){
+					console.log("score!!");
+					score -= 1;
+				}
+				document.getElementById('score').innerHTML = score;	
+				document.getElementById('announceScore').innerHTML = "Your score is " + score + ".";		
 			};
 			
 		}
-		
+				
+
 
 		
 	</script>
